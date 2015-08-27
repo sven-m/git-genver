@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+usage() {
+  echo "genver: Generate version based on release type"
+  echo "usage: git genver current [-h] [-v] [--help] [--version] [<base>]"
+}
+
+cmd_current() {
+  trap error ERR
+
+  local base=master
+  if [ "$#" -eq 1 ]; then
+    base="$1"; shift
+  elif [ "$#" -gt 1 ]; then
+    usage; exit 1
+  fi
+
+  case $base in
+    "-h"|"--help")
+      usage; exit 0
+      ;;
+    "-v"|"--version")
+      version; exit 0
+      ;;
+  esac
+
+  local current_version=$(git describe $base --abbrev=0)
+
+  echo $current_version
+}

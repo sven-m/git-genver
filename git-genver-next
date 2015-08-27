@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+usage() {
+  echo "genver: Generate version based on release type"
+  echo "usage: git tf genver [-h] [-v] [--help] [--version] <type> [<base>]"
+  echo "  type: major|minor|patch"
+}
+
+cmd_next() {
+  trap error ERR
+
+  if [ "$#" -lt 1 ]; then
+      usage; exit 1
+  fi
+  
+  local type="$1"; shift
+  case $type in
+    "-h"|"--help")
+      usage; exit 0
+      ;;
+    "-v"|"--version")
+      version; exit 0
+      ;;
+  esac
+
+  local base=master
+  if [ "$#" -eq 1 ]; then
+    base="$1"; shift
+  fi
+
+  local current_version=$(git genver current $base)
+  
+  version_components=( ${current_version//./ } )
+
+  case $type in
+    "major")
+      ((version_components[0]++))
+      version_components[1]=0
+      version_components[2]=0
+      ;;
+    "minor")
+      ((version_components[1]++))
+      version_components[2]=0
+      ;;
+    "patch")
+      ((version_components[2]++))
+      ;;
+    *)
+      usage; exit 1
+  esac
+
+  space_separated_version_string="${version_components[*]}"
+  next_version=${space_separated_version_string// /.}
+
+  echo $next_version
+}
