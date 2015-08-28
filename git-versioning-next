@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 usage() {
-  echo "genver: Generate version based on release type"
-  echo "usage: git tf genver [-h] [-v] [--help] [--version] <type> [<base>]"
+  echo "versioning: Generate version based on release type"
+  echo "usage: git tf versioning [-h] [-v] [--help] [--version] <type> [<base>]"
   echo "  type: major|minor|patch"
 }
 
@@ -28,7 +28,7 @@ cmd_next() {
     base="$1"; shift
   fi
 
-  local current_version=$(git genver current $base)
+  local current_version=$(git versioning current $base)
   
   version_components=( ${current_version//./ } )
 

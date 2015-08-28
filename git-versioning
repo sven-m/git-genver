@@ -3,7 +3,7 @@
 set -e
 
 usage() {
-  echo "usage: git genver <subcommand>"
+  echo "usage: git versioning <subcommand>"
   echo
   echo "Available subcommands are:"
   echo "current"
@@ -11,7 +11,7 @@ usage() {
 }
 
 version() {
-  echo "genver git plugin v0.1.0"
+  echo "versioning git plugin v0.1.0"
   echo
 }
 
@@ -41,11 +41,11 @@ main() {
   esac
 
   local workingdir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
-  if [ ! -e "$workingdir/git-genver-$subcommand" ]; then
+  if [ ! -e "$workingdir/git-versioning-$subcommand" ]; then
     usage; exit 1
   fi
 
-  source "$workingdir/git-genver-$subcommand"
+  source "$workingdir/git-versioning-$subcommand"
 
   if ! type "cmd_$subcommand" 2&> /dev/null; then
     usage; exit 1
