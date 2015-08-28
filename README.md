@@ -8,3 +8,8 @@ Initial release
 
   - get latest/current version
   - get next version
+
+## 0.2.0
+Renamed tool
+
+  - git-genver -> git-versioning
