@@ -1,5 +1,5 @@
 # git-versioning
-This git plugin helps with automatically generating versions for releases
+This git plugin helps with automatically generating versions for releases according to semver.
 
 # Release Notes
 
