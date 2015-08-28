@@ -1,4 +1,4 @@
-# git-genver
+# git-versioning
 This git plugin helps with automatically generating versions for releases
 
 # Release Notes

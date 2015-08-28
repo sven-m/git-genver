@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 usage() {
-  echo "genver: Generate version based on release type"
-  echo "usage: git genver current [-h] [-v] [--help] [--version] [<base>]"
+  echo "versioning: Generate version based on release type"
+  echo "usage: git versioning current [-h] [-v] [--help] [--version] [<base>]"
 }
 
 cmd_current() {
